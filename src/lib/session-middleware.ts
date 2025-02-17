@@ -26,11 +26,11 @@ type AdditionalContext = {
   };
 };
 
-export const sessionMiddleware =
-  createMiddleware<AdditionalContext>(async (c, next) => {
+export const sessionMiddleware = createMiddleware<AdditionalContext>(
+  async (c, next) => {
     const client = new Client()
-      .setEndpoint(process.env.NEXT_PUBLIC_APPWITE_ENDPOINT!)
-      .setProject(process.env.NEXT_PUBLIC_APPWITE_PROJECT!);
+      .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
+      .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT!);
 
     const session = getCookie(c, AUTH_COOKIE);
 
@@ -52,4 +52,5 @@ export const sessionMiddleware =
     c.set("user", user);
 
     await next();
-  });
+  }
+);
